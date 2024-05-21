@@ -1,0 +1,70 @@
+<div class="overlay">
+	<div class="popup">
+    @if(isEditMode){
+      <h2>Edit {{selectedItem.title}}</h2>
+    }@else {
+
+      <h2>'Create a new Task</h2>
+    }
+		<a class="close" href="#" (click)="OnCloseForm()">&times;</a>
+		<div class="content">
+			<section class="container">
+                <form action="#"  #taskForm="ngForm"  (ngSubmit)="onSubmit(taskForm)" class="form">
+                  <div class="input-box">
+                    <label>Title*</label>
+                    <!-- [(ngModel)]="selectedItem.title" -->
+                    <input type="text" name="title" ngModel required  />
+                  </div>
+                  <div class="input-box">
+                    <label>Description*</label>
+                    <!-- [(ngModel)]="selectedItem.desc" -->
+                    <textarea ngModel name="desc" rows="8" required  ></textarea>
+                  </div>
+                  <div class="column">
+                    <div class="input-box">
+                      <label>Assigned To</label>
+                      <!-- [(ngModel)]="selectedItem
+                      .assignedTo" -->
+                      <input type="text" name="assignedTo" required ngModel   />
+                    </div>
+                    <div class="input-box">
+                      <label>Created At</label>
+                      <!-- [(ngModel)]="selectedItem.createdAt" -->
+                      <input type="date"   name="createdAt" required ngModel />
+                    </div>
+                  </div>
+                  <div class="input-box address">
+                    <div class="column">
+                      <div class="select-box">
+                        <!-- [(ngModel)]="selectedItem.priority" -->
+                        <select name="priority" ngModel  >
+                          <option hidden>Priority</option>
+                          <option value="low">Low</option>
+                          <option value="medium">Medium</option>
+                          <option value="high">High</option>
+                          <option value="critical">Critical</option>
+                        </select>
+                      </div>
+                      <div class="select-box">
+                        <!-- [(ngModel)]="selectedItem.status" -->
+                        <select name="status"   ngModel>
+                          <option hidden>Status</option>
+                          <option value="open">Open</option>
+                          <option value="started">Started</option>
+                          <option value="in-progress">In Progress</option>
+                          <option value="complete">Complete</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  @if(isEditMode){
+
+                    <button type="submit">Update Task</button>
+                  }@else {
+                    <button type="submit">Create Task</button>
+                  }
+                </form>
+              </section>
+		</div>
+	</div>
+</div>

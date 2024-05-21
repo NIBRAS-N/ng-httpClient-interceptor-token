@@ -1,0 +1,73 @@
+
+@if(showCreateTaskForm){
+
+    <app-create-task 
+            (CloseForm)="CloseCreateTaskForm()"
+            (TaskSubmit)="createAndUpdateTask($event)"
+            [selectedItem]="selectedItem"
+            [isEditMode]="isEditMode"
+    />  
+}
+
+@if(showTaskDetail){
+    <app-task-details
+        (closeTaskStatus)="CloseShowTaskDetail()"
+        [currentTask]="selectedItem"
+    ></app-task-details>
+}
+
+<div class="dashboard-container">
+   
+    <div style="display: flex;">
+        <div style="width: 50%">
+            <h2>Dashboard</h2>
+        </div>
+        <div style="width: 50%; text-align: right;">
+            <button class="create-task-btn" (click)="OpenCreateTaskForm()">Create Task</button>
+            <button class="create-task-btn" (click)="fetchAllTaskClicked()">Fetch Tasks</button>
+            <button class="create-task-btn" (click)="DeleteAllTask()">Clear Tasks</button>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="dashboard-item-container">
+        @if (errorMessage) {
+            <div class="sb sb-error" >{{ errorMessage }}</div>
+        }
+        @if(isLoading){<div class="loader" ></div>}
+        @else {
+
+            @if(allTasks.length>0){
+                @for (item of allTasks; track item.id) {
+    
+                    <div class="task-item" [ngClass]="'task-'+item.status">
+                        <div class="task-title">
+                            <h3>{{item.title}}</h3>
+                        </div>
+                        <p><b>Assigned to: </b>{{item.assignedTo}}</p>
+                        <p><b>Priority: </b>{{item.priority}}</p>
+                        <p><b>Status: </b>{{item.status}}</p>
+                        <div class="task-action-icons">
+                            <button class="task-action-btn" title="Detail" (click)="SelectTask2(item)">
+                                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                            </button>
+                            <button class="task-action-btn" title="Edit" (click)="SelectTask1(item)">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                
+                            </button>
+                            <button class="task-action-btn" title="Delete" (click)="onDelete(item.id)">
+                                <i class="fa fa-trash" aria-hidden="true" ></i>
+                            </button>            
+                        </div>
+                    </div>
+                }
+            }@else {
+                <h1>No task available</h1>
+            }
+        }
+    </div>
+</div>
+
+
+
