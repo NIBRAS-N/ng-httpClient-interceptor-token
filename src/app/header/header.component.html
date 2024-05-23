@@ -1,0 +1,14 @@
+<div class="app-header">
+    <!--APP LOGO-->
+    <div class="app-header-logo">
+        <h2>Task Management</h2>
+    </div>
+
+    <!--APP NAVBAR-->
+    <div class="app-header-navbar">
+        <a routerLink="/" RouterLinkActive="active">HOME</a>
+        <a routerLink="/dashboard" RouterLinkActive="active" *ngIf="isLoggedIn">DASHBOARD</a>
+        <a routerLink="/login" RouterLinkActive="active" *ngIf="!isLoggedIn">LOGIN</a>
+        <a *ngIf="isLoggedIn" (click)="onLogout()" >LOGOUT</a>
+    </div>
+</div>

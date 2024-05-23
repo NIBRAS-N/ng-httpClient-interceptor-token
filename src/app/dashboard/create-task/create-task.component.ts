@@ -32,6 +32,7 @@ export class CreateTaskComponent  {
     console.log(this.selectedItem);
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
+    // this.isEditMode=true;
     setTimeout(() => {
       
       this.taskForm.form.patchValue(this.selectedItem  )

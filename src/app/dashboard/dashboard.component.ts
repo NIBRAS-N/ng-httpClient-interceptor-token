@@ -39,12 +39,13 @@ export class DashboardComponent implements OnInit {
   CloseShowTaskDetail(){this.showTaskDetail=false}
   OpenShowTaskDetail(){this.showTaskDetail=true}
   CloseCreateTaskForm(){
+    debugger;
     this.showCreateTaskForm=false;
   }
   OpenCreateTaskForm(){
     this.showCreateTaskForm=true;
     this.isEditMode=false;
-    this.selectedItem=new Task(); 
+    this.selectedItem= {title: '', desc: '', assignedTo: '', createdAt: '', priority: '', status: ''} 
   }
 
   createAndUpdateTask(data:Task){
@@ -127,12 +128,12 @@ export class DashboardComponent implements OnInit {
     this.showCreateTaskForm = true;
     // this.OpenShowTaskDetail();
     this.selectedItemId= item.id!;
-    this.isEditMode = false;
+    // this.isEditMode = false;
   }
   SelectTask2(item:Task){
     // debugger;
     this.selectedItem=(item as Task);
-    this.isEditMode = true;
+    // this.isEditMode = true;
     // this.OpenCreateTaskForm()
     this.OpenShowTaskDetail();
     
